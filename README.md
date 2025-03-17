@@ -14,7 +14,7 @@ A full-stack web application for hotel reservations, built with Java (Backend) a
 
 ### Backend
 - Java
-- PostgreSQL Database
+- MySQL Database
 - Maven for dependency management
 - Servlets for API endpoints
 
@@ -55,12 +55,12 @@ Hotel Reservation System/
 
 ### Prerequisites
 - Java JDK 11 or higher
-- PostgreSQL Database
+- MySQL Database
 - Maven
 - Web Server (Tomcat)
 
 ### Database Setup
-1. Create a PostgreSQL database
+1. Create a MySQL database
 2. Run the SQL commands from `database/schema.sql`
 
 ### Backend Setup
