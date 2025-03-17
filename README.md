@@ -1,142 +1,108 @@
 # Hotel Reservation System
 
-A simple hotel reservation system with a clean and intuitive interface.
+A full-stack web application for hotel reservations, built with Java (Backend) and HTML/CSS/JavaScript (Frontend).
 
 ## Features
 
-- User Authentication (Login/Register)
-- Hotel Search and Booking
-- Room Management
+- User Registration and Authentication
+- Hotel Search by Location and Dates
+- Room Booking System
 - Booking Management
-- Review System
-- Admin Dashboard
+- Responsive User Interface
 
 ## Tech Stack
 
 ### Backend
-- Java Servlets
-- JDBC for Database Operations
-- PostgreSQL
-- Gson for JSON Processing
+- Java
+- PostgreSQL Database
+- Maven for dependency management
+- Servlets for API endpoints
 
 ### Frontend
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
-- Fetch API for HTTP requests
-
-### Database
-- PostgreSQL
+- Responsive Design
 
 ## Project Structure
 
 ```
-hotel-reservation/
-├── backend/              # Java Backend
+Hotel Reservation System/
+├── backend/
 │   ├── src/
-│   │   └── main/
-│   │       ├── java/
-│   │       │   └── com/hotel/
-│   │       │       ├── servlet/    # HTTP request handlers
-│   │       │       ├── dao/        # Database access objects
-│   │       │       ├── model/      # Data models
-│   │       │       └── DatabaseConnection.java
-│   │       └── webapp/
-│   │           └── WEB-INF/
-│   │               └── web.xml
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── hotel/
+│   │   │   │           ├── DatabaseConnection.java
+│   │   │   │           ├── dao/
+│   │   │   │           ├── filter/
+│   │   │   │           ├── model/
+│   │   │   │           ├── repository/
+│   │   │   │           └── servlet/
+│   │   │   └── webapp/
+│   │   └── test/
 │   └── pom.xml
-├── frontend/            # Simple HTML/CSS/JS Frontend
+├── frontend/
 │   ├── index.html
 │   ├── styles.css
 │   └── script.js
-├── database/            # Database Scripts
-│   └── schema.sql
-└── README.md
+└── database/
+    └── schema.sql
 ```
 
-## Getting Started
+## Setup Instructions
 
 ### Prerequisites
-- Java 17 or higher
-- PostgreSQL 13 or higher
+- Java JDK 11 or higher
+- PostgreSQL Database
 - Maven
-- Tomcat 9 or higher
-- Web browser
+- Web Server (Tomcat)
 
-### Installation
+### Database Setup
+1. Create a PostgreSQL database
+2. Run the SQL commands from `database/schema.sql`
 
-1. Clone the repository:
-```bash
-git clone https://github.com/alveera224/Hotel-Reservation-System.git
-cd Hotel-Reservation-System
-```
+### Backend Setup
+1. Navigate to the backend directory
+2. Update database credentials in `src/main/resources/application.properties`
+3. Build the project:
+   ```bash
+   mvn clean package
+   ```
+4. Deploy the generated WAR file to Tomcat
 
-2. Set up the database:
-```bash
-cd database
-psql -U postgres -f schema.sql
-```
-
-3. Build and deploy the backend:
-```bash
-cd backend
-mvn clean package
-# Copy the generated WAR file to Tomcat's webapps directory
-```
-
-4. Open the frontend:
-- Navigate to the `frontend` directory
-- Open `index.html` in your web browser
-
-The application will be available at:
-- Frontend: Open `frontend/index.html` in your browser
-- Backend: http://localhost:8080/hotel-reservation
+### Frontend Setup
+1. Navigate to the frontend directory
+2. Open `index.html` in a web browser
+3. The application will connect to the backend at `http://localhost:8080`
 
 ## API Endpoints
 
-### Users
-- `POST /api/users` - Register a new user
-- `GET /api/users` - Get all users
-- `GET /api/users/{email}` - Get user by email
-- `PUT /api/users` - Update user
-- `DELETE /api/users/{id}` - Delete user
+### User Management
+- POST `/api/users` - Register new user
+- POST `/api/users/login` - User login
+- GET `/api/users/{id}` - Get user details
 
-### Hotels
-- `GET /api/hotels` - Get all hotels
-- `GET /api/hotels/{id}` - Get hotel by ID
-- `POST /api/hotels` - Create new hotel (Admin)
-- `PUT /api/hotels/{id}` - Update hotel (Admin)
-- `DELETE /api/hotels/{id}` - Delete hotel (Admin)
+### Hotel Management
+- GET `/api/hotels` - Get all hotels
+- GET `/api/hotels/search` - Search hotels by location and dates
+- GET `/api/hotels/{id}` - Get hotel details
 
-### Rooms
-- `GET /api/rooms` - Get all rooms
-- `GET /api/rooms/{id}` - Get room by ID
-- `POST /api/rooms` - Create new room (Admin)
-- `PUT /api/rooms/{id}` - Update room (Admin)
-- `DELETE /api/rooms/{id}` - Delete room (Admin)
-
-### Bookings
-- `GET /api/bookings` - Get all bookings
-- `GET /api/bookings/{id}` - Get booking by ID
-- `POST /api/bookings` - Create new booking
-- `PUT /api/bookings/{id}` - Update booking
-- `DELETE /api/bookings/{id}` - Cancel booking
-
-### Reviews
-- `GET /api/reviews` - Get all reviews
-- `GET /api/reviews/{id}` - Get review by ID
-- `POST /api/reviews` - Create new review
-- `PUT /api/reviews/{id}` - Update review
-- `DELETE /api/reviews/{id}` - Delete review
+### Booking Management
+- POST `/api/bookings` - Create new booking
+- GET `/api/bookings/user/{userId}` - Get user's bookings
+- DELETE `/api/bookings/{id}` - Cancel booking
 
 ## Contributing
-
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
 ## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+## Author
+Alveera Fatima 
