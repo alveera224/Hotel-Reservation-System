@@ -1,132 +1,142 @@
-# AI-Powered Hotel Reservation System 🏨
+# Hotel Reservation System
 
-A sophisticated hotel reservation platform that combines traditional booking features with AI-powered dynamic pricing and sentiment analysis.
+A simple hotel reservation system with a clean and intuitive interface.
 
-## 🌟 Features
+## Features
 
-- **AI-Powered Dynamic Pricing**
-  - XGBoost model for real-time price predictions
-  - Factors: seasonal demand, competitor pricing, room type, booking trends
-  
-- **Sentiment Analysis for Reviews**
-  - TF-IDF + SVM model for review classification
-  - Categories: Positive, Neutral, Negative
-  - Trained on Booking.com hotel reviews dataset
+- User Authentication (Login/Register)
+- Hotel Search and Booking
+- Room Management
+- Booking Management
+- Review System
+- Admin Dashboard
 
-- **Hotel Search & Booking**
-  - User-friendly React.js interface
-  - Real-time availability checking
-  - Secure payment processing
-  
-- **Smart Database Management**
-  - SQL database with JDBC connectivity
-  - Efficient data handling and retrieval
+## Tech Stack
 
-## 🛠️ Tech Stack
+### Backend
+- Java Servlets
+- JDBC for Database Operations
+- PostgreSQL
+- Gson for JSON Processing
 
-- **Frontend**: React.js
-- **Backend**: Java (Spring Boot)
-- **Database**: MySQL/PostgreSQL
-- **AI Models**: Python (Flask API)
-  - XGBoost for pricing
-  - TF-IDF + SVM for sentiment analysis
-- **Dataset**: Booking.com Hotel Reviews
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Fetch API for HTTP requests
 
-## 📁 Project Structure
+### Database
+- PostgreSQL
+
+## Project Structure
 
 ```
-hotel-reservation-system/
-├── backend/                 # Java Backend
+hotel-reservation/
+├── backend/              # Java Backend
 │   ├── src/
-│   ├── pom.xml
-│   └── README.md
-├── frontend/               # React Frontend
-│   ├── src/
-│   ├── package.json
-│   └── README.md
-├── ai-models/              # Python AI Services
-│   ├── pricing_model/
-│   │   ├── train.py
-│   │   └── predict.py
-│   ├── sentiment_model/
-│   │   ├── train.py
-│   │   └── predict.py
-│   └── requirements.txt
-└── database/              # Database Scripts
-    └── schema.sql
+│   │   └── main/
+│   │       ├── java/
+│   │       │   └── com/hotel/
+│   │       │       ├── servlet/    # HTTP request handlers
+│   │       │       ├── dao/        # Database access objects
+│   │       │       ├── model/      # Data models
+│   │       │       └── DatabaseConnection.java
+│   │       └── webapp/
+│   │           └── WEB-INF/
+│   │               └── web.xml
+│   └── pom.xml
+├── frontend/            # Simple HTML/CSS/JS Frontend
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── database/            # Database Scripts
+│   └── schema.sql
+└── README.md
 ```
 
-## 🚀 Setup Instructions
+## Getting Started
 
 ### Prerequisites
-- Java JDK 17+
-- Node.js 16+
-- Python 3.8+
-- MySQL/PostgreSQL
+- Java 17 or higher
+- PostgreSQL 13 or higher
+- Maven
+- Tomcat 9 or higher
+- Web browser
 
-### Backend Setup
-1. Navigate to `backend/`
-2. Run `mvn install`
-3. Configure `application.properties`
-4. Run `mvn spring-boot:run`
+### Installation
 
-### Frontend Setup
-1. Navigate to `frontend/`
-2. Run `npm install`
-3. Configure `.env`
-4. Run `npm start`
+1. Clone the repository:
+```bash
+git clone https://github.com/alveera224/Hotel-Reservation-System.git
+cd Hotel-Reservation-System
+```
 
-### AI Models Setup
-1. Navigate to `ai-models/`
-2. Create virtual environment: `python -m venv venv`
-3. Activate venv and install requirements:
-   ```bash
-   source venv/bin/activate  # Unix
-   venv\Scripts\activate     # Windows
-   pip install -r requirements.txt
-   ```
-4. Download dataset from Kaggle
-5. Train models:
-   ```bash
-   python pricing_model/train.py
-   python sentiment_model/train.py
-   ```
+2. Set up the database:
+```bash
+cd database
+psql -U postgres -f schema.sql
+```
 
-## 🔄 API Endpoints
+3. Build and deploy the backend:
+```bash
+cd backend
+mvn clean package
+# Copy the generated WAR file to Tomcat's webapps directory
+```
 
-### Java Backend APIs
-- `POST /api/hotels/search`
-- `POST /api/bookings/create`
-- `POST /api/reviews/submit`
-- `GET /api/hotels/{id}/price`
+4. Open the frontend:
+- Navigate to the `frontend` directory
+- Open `index.html` in your web browser
 
-### AI Model APIs
-- `POST /api/ml/predict-price`
-- `POST /api/ml/analyze-sentiment`
+The application will be available at:
+- Frontend: Open `frontend/index.html` in your browser
+- Backend: http://localhost:8080/hotel-reservation
 
-## 📊 Database Schema
+## API Endpoints
 
-Core tables:
-- Hotels
-- Rooms
-- Users
-- Bookings
-- Reviews
-- PricingHistory
+### Users
+- `POST /api/users` - Register a new user
+- `GET /api/users` - Get all users
+- `GET /api/users/{email}` - Get user by email
+- `PUT /api/users` - Update user
+- `DELETE /api/users/{id}` - Delete user
 
-## 🤝 Contributing
+### Hotels
+- `GET /api/hotels` - Get all hotels
+- `GET /api/hotels/{id}` - Get hotel by ID
+- `POST /api/hotels` - Create new hotel (Admin)
+- `PUT /api/hotels/{id}` - Update hotel (Admin)
+- `DELETE /api/hotels/{id}` - Delete hotel (Admin)
+
+### Rooms
+- `GET /api/rooms` - Get all rooms
+- `GET /api/rooms/{id}` - Get room by ID
+- `POST /api/rooms` - Create new room (Admin)
+- `PUT /api/rooms/{id}` - Update room (Admin)
+- `DELETE /api/rooms/{id}` - Delete room (Admin)
+
+### Bookings
+- `GET /api/bookings` - Get all bookings
+- `GET /api/bookings/{id}` - Get booking by ID
+- `POST /api/bookings` - Create new booking
+- `PUT /api/bookings/{id}` - Update booking
+- `DELETE /api/bookings/{id}` - Cancel booking
+
+### Reviews
+- `GET /api/reviews` - Get all reviews
+- `GET /api/reviews/{id}` - Get review by ID
+- `POST /api/reviews` - Create new review
+- `PUT /api/reviews/{id}` - Update review
+- `DELETE /api/reviews/{id}` - Delete review
+
+## Contributing
 
 1. Fork the repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Create Pull Request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 License
+## License
 
-MIT License - see LICENSE.md
-
-## 🔗 Dataset Attribution
-
-Hotel Reviews dataset from Booking.com:
-https://www.kaggle.com/datasets/michelhatab/hotel-reviews-bookingcom 
+This project is licensed under the MIT License - see the LICENSE file for details. 
